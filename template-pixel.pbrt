@@ -1,0 +1,33 @@
+Film "image" "integer xresolution" [1] "integer yresolution" [1]
+LookAt 0 0 1  0 0 0  0 1 1
+Camera "perspective" "float fov" [30]
+
+Sampler "lowdiscrepancy" "integer pixelsamples" 4
+
+SurfaceIntegrator "multipolesubsurface"
+  "integer maxdepth" 5
+  "float maxerror" 0.1
+  "float minsampledistance" 0.0015
+
+WorldBegin
+
+  AttributeBegin
+    LightSource "infinite" "rgb L" [1 1 1]  "integer nsamples" [4]
+  AttributeEnd
+
+  AttributeBegin
+    Translate 0 0 0
+    Scale 1 1 1
+    Material "layeredskin" "float roughness" 0.35
+                           "color Kr" [0 0 0]
+                           "color Kt" [0 0 0]
+                           "skinlayer layers" [ EPTH 1.4 20e6 1.4]
+                           "float f_mel" MEL
+                           "float f_eu" 0.5
+                           "float f_blood" HG
+                           "float f_ohg" 0.75
+    Shape "trianglemesh"  "point P" [ -1 -1 0  1 -1 0  1 1 0  -1 1 0 ]
+   	                      "integer indices" [ 0 1 2 2 3 0 ]
+  AttributeEnd
+  
+WorldEnd
